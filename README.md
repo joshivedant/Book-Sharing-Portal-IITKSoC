@@ -1,4 +1,4 @@
-# Project done under Training/Internship program organised by [CSE@IITK Summer of Code](https://soc.cse.iitk.ac.in/)
+## Project done under Training/Internship program organised by [CSE@IITK Summer of Code](https://soc.cse.iitk.ac.in/)
 
 ## A React + Redux / Django Rest Framework authentication example, [watch this for demo](https://drive.google.com/file/d/1Kgepn__VSDFh3svdFRSNyK3Apel51VNN/view?usp=sharing)
 
