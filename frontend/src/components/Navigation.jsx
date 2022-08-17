@@ -39,8 +39,10 @@ class Navigation extends Component {
 
   userIsAuthenticatedEmail() {
     if (this.props.authenticated) {
-      return [
-          <div>
+      if(localStorage.user === "admin"){
+        return [
+        
+          <Nav navbar style={{ margin: "auto",  }}>
               <NavItem>
              <NavLink
                   tag={Link}
@@ -50,17 +52,6 @@ class Navigation extends Component {
                   onClick={this.toggleNavbarOnClick}
                 >
                   Circulation
-                </NavLink>
-         </NavItem>
-         <NavItem>
-             <NavLink
-                  tag={Link}
-                  to="/user"
-                  activeClassName="active"
-                  exact
-                  onClick={this.toggleNavbarOnClick}
-                >
-                  Dashboard
                 </NavLink>
          </NavItem>
          <NavItem>
@@ -105,8 +96,57 @@ class Navigation extends Component {
             </DropdownItem>
           </DropdownMenu>
         </UncontrolledDropdown>
-    </div>
-      ];
+    </Nav>
+  
+      ];}
+      else {
+        return [
+          <Nav>
+           <NavItem>
+             <NavLink
+                  tag={Link}
+                  to="/user"
+                  activeClassName="active"
+                  exact
+                  onClick={this.toggleNavbarOnClick}
+                >
+                  Dashboard
+                </NavLink>
+          </NavItem>
+          <UncontrolledDropdown nav
+          className="nav-item dropdown"
+          key="email-auth"
+        >
+          <DropdownToggle nav caret className="nav-link">
+            Account
+          </DropdownToggle>
+          <DropdownMenu className="dropdown-menu">
+            <DropdownItem className="inverse-dropdown">
+              <span key="signout" onClick={this.props.logoutAction}>
+                <NavLink
+                  tag={Link}
+                  to="/signout"
+                  onClick={this.toggleNavbarOnClick}
+                >
+                  Log out
+                </NavLink>
+              </span>
+            </DropdownItem>
+            <DropdownItem className="inverse-dropdown">
+              <NavLink
+                tag={Link}
+                to="/changepassword"
+                onClick={this.toggleNavbarOnClick}
+              >
+                Change Password
+              </NavLink>
+            </DropdownItem>
+          </DropdownMenu>
+        </UncontrolledDropdown>
+        </Nav>
+        ];
+      }
+
     }
   }
 
@@ -171,6 +211,7 @@ class Navigation extends Component {
                 </NavLink>
 
               </NavItem>
+              
               <NavItem>
                   <NavLink
                   tag={Link}
@@ -184,6 +225,7 @@ class Navigation extends Component {
               </NavItem>
               {this.userIsNotAuthenticated()}
               {this.userIsAuthenticatedEmail()}
+              
             </Nav>
           </Collapse>
         </Navbar>

@@ -75,7 +75,6 @@ export default class Check extends Component {
         <div className="bg">
         <div className="content">
         <h1 className="heading" align="center">Book Circulation</h1>
-        <div align='right'><button onclick="logout()">logout</button> </div>
         <hr />
 
 
@@ -87,7 +86,7 @@ export default class Check extends Component {
 		<div class="poster p1">
         <form name='check_in'>
                         Book Code <input type='text' name='bar_checkin' placeholder="Please enter book code" value={this.state.bar_checkin} onChange={this.handleBar_checkin} /><br/> <br/>
-                        Date <input type='text' name='date_checkin' placeholder="dd/mm/yy" value={this.state.date_checkin} onChange={this.handleDate_checkin} /><br/> <br/>
+                        {/* Date <input type='text' name='date_checkin' placeholder="dd/mm/yy" value={this.state.date_checkin} onChange={this.handleDate_checkin} /><br/> <br/> */}
                         <button type="button" onClick={this.checkin}>CHECKIN</button>
                         <br/><br/>
                         <br/><br/><br/>
@@ -101,7 +100,7 @@ export default class Check extends Component {
         <form name='checkout'>
                         Card No. <input type="text" name="card_checkout" placeholder="Enter card no." value={this.state.card_checkout} onChange={this.handleCard_checkout} /> <br/><br/>
                         Book Code <input type='text' name='bar_checkout' placeholder="Please enter book code" value={this.state.bar_checkout} onChange={this.handleBar_checkout} /><br/> <br/>
-                        Date <input type='text' name='date_checkout' placeholder="dd/mm/yy" value={this.state.date_checkout} onChange={this.handleDate_checkout} /><br/> <br/>
+                        {/* Date <input type='text' name='date_checkout' placeholder="dd/mm/yy" value={this.state.date_checkout} onChange={this.handleDate_checkout} /><br/> <br/> */}
                         <button type="button" onClick={this.checkout}>CHECKOUT</button>
                         <br/><br/>
                         <br/><br/><br/>
@@ -194,12 +193,12 @@ incr_date(date_str){
         var url = "http://localhost:8000/api/catalogue/" + book.id + "/";
         axios
             .put(url,book)
-            .then(res => alert(book.title+" checked out"))
+            .then(res => console.log('checked out'))
             .catch(err=> console.log(err));
         const circulation_book = {"username":book.issued_to,"title":book.title,'author':book.author,'barcode':book.barcode,'status':book.status,'issue_date':book.issue_date,"return_date":book.due_date}
         axios
             .post("http://localhost:8000/api/circulation/",circulation_book)
-            .then(res => alert(book.title +"added to " + book.issued_to ))
+            .then(res => alert(book.title +" cheked out to " + book.issued_to ))
             .catch(err => console.log(err));
 
     }
